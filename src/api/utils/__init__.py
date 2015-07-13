@@ -13,7 +13,7 @@ from utils.invokeCommand import InvokeCommand
 confOpers = ConfigFileOpers()
 
 def get_zk_address():
-        ret_dict = confOpers.getValue(options.jetty_manager_property, ['zkAddress','zkPort'])
+        ret_dict = confOpers.getValue(options.moxi_manager_property, ['zkAddress','zkPort'])
         zk_address = ret_dict['zkAddress']
         zk_port = ret_dict['zkPort']
         return zk_address, zk_port

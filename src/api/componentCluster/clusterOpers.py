@@ -67,20 +67,20 @@ class ClusterOpers(BaseClusterOpers):
 
         existCluster =  zkOper.existCluster()
         if not existCluster:
-            raise UserVisiableException("Jetty componentCluster does't exist")
+            raise UserVisiableException("moxi componentCluster does't exist")
     
-        total_nodes = zkOper.retrieve_jetty_node_list() 
+        total_nodes = zkOper.retrieve_moxi_node_list() 
         started_nodes = zkOper.retrieve_started_nodes()
         if len(total_nodes) == len(started_nodes):
-            return {'message':'all jetty nodes have started. No need to start them.'}
+            return {'message':'all moxi nodes have started. No need to start them.'}
         
-        logging.info("all jetty nodes: %s" %(total_nodes))
+        logging.info("all moxi nodes: %s" %(total_nodes))
         to_start_nodes = list(set(total_nodes) - set(started_nodes))
-        logging.info("jetty needed to start: " + str(to_start_nodes))
+        logging.info("moxi needed to start: " + str(to_start_nodes))
         
         node_infos = []
         for node in to_start_nodes:
-            info = zkOper.retrieve_jetty_node_info(node)
+            info = zkOper.retrieve_moxi_node_info(node)
             node_infos.append(info)
 
         self.baseOpers(node_infos, OperType.start)
@@ -98,7 +98,7 @@ class ClusterOpers(BaseClusterOpers):
         if not started_nodes_list:
             return {'message':'cluster has been stopped, no need to do this!'}
         for node in started_nodes_list:
-            info = zkOper.retrieve_jetty_node_info(node)
+            info = zkOper.retrieve_moxi_node_info(node)
             node_infos.append(info)
         
         self.baseOpers(node_infos, OperType.stop)
@@ -109,9 +109,9 @@ class ClusterOpers(BaseClusterOpers):
         zkOper = Common_ZkOpers()
         node_infos = []
 
-        nodes_list = zkOper.retrieve_jetty_node_list()
-        for jetty_node in nodes_list:
-            info = zkOper.retrieve_jetty_node_info(jetty_node)
+        nodes_list = zkOper.retrieve_moxi_node_list()
+        for moxi_node in nodes_list:
+            info = zkOper.retrieve_moxi_node_info(moxi_node)
             node_infos.append(info)
         
         self.baseOpers(node_infos, OperType.reload)
@@ -128,7 +128,7 @@ class ClusterOpers(BaseClusterOpers):
 
         existCluster = zkOper.existCluster(clusterUUID)
         if not existCluster:
-            error_message = "Jetty componentCluster does't exist(cluster id:%s), \
+            error_message = "moxi componentCluster does't exist(cluster id:%s), \
                  please specify the right cluster uuid!"%(clusterUUID)
             raise UserVisiableException(error_message)
          
@@ -141,7 +141,7 @@ class ClusterOpers(BaseClusterOpers):
     def retrieve_cluster_started_status(self):
         zkOper = Common_ZkOpers()
         started_nodes = zkOper.retrieve_started_nodes()
-        total_nodes = zkOper.retrieve_jetty_node_list()
+        total_nodes = zkOper.retrieve_moxi_node_list()
 
         started_nodes_count = len(started_nodes)
         total_nodes_count = len(total_nodes)

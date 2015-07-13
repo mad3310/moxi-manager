@@ -27,7 +27,7 @@ class ZkOpers(object):
         max_delay=10000,
     )
     
-    rootPath = "/letv/javaContainer/jetty"
+    rootPath = "/letv/javaContainer/moxi"
     confOpers = ConfigFileOpers()
     
     '''
@@ -126,13 +126,13 @@ class ZkOpers(object):
         self.zk.ensure_path(path)
         self.DEFAULT_RETRY_POLICY(self.zk.set, path, str(dataNodeProps))#version need to write
  
-    def retrieve_jetty_node_list(self):
+    def retrieve_moxi_node_list(self):
         clusterUUID = getClusterUUID()
         path = self.rootPath + "/" + clusterUUID + "/dataNode"
         container_node_name_list = self.__return_children_to_list(path)
         return container_node_name_list
 
-    def retrieve_jetty_node_info(self, container_node_name):
+    def retrieve_moxi_node_info(self, container_node_name):
         clusterUUID = getClusterUUID()
         path = self.rootPath + "/" + clusterUUID + "/dataNode/" + container_node_name
         ip_dict = self.__retrieve_special_path_prop(path)

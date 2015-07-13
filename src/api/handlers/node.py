@@ -6,7 +6,7 @@ Created on Mar 8, 2015
 from base import APIHandler
 from tornado_letv.tornado_basic_auth import require_basic_auth
 from tornado.web import asynchronous
-from componentNode.nodeOpers import *
+from componentNode.nodeOpers import NodeOpers
 
 
 @require_basic_auth

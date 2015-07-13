@@ -1,7 +1,12 @@
 eclipse.preferences.version=1
 encoding//src/api/appdefine/__init__.py=utf-8
 encoding//src/api/appdefine/appDefine.py=utf-8
+encoding//src/api/handlers/admin.py=utf-8
 encoding//src/api/handlers/base.py=utf-8
 encoding//src/api/handlers/cluster.py=utf-8
 encoding//src/api/moxiManager.py=utf-8
 encoding//src/api/routes.py=utf-8
+encoding//src/api/tornado_letv/tornado_basic_auth.py=utf-8
+encoding//src/api/utils/configFileOpers.py=utf-8
+encoding//src/api/utils/decorators.py=utf-8
+encoding//src/api/zk/zkOpers.py=utf-8

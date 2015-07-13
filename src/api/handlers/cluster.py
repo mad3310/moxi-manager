@@ -24,7 +24,7 @@ class Sync_Handler(APIHandler):
         self.cluster_opers.syncExistedCluster(requestParam)
         
         result = {}
-        result.setdefault("message", "sync jetty to local successful!")
+        result.setdefault("message", "sync moxi to local successful!")
         self.finish(result)
 
 
@@ -35,8 +35,8 @@ class Cluster_Handler(APIHandler):
     
     def post(self):
         '''
-        function: create cluster and add the first jetty node to cluster, info record to zk
-        url example: curl --user root:root -d "clusterName=jetty_cluster&dataNodeIp=192.168.116.129&dataNodeName=jetty_cluster_node_1[&dataNodeExternalPort=**]" "http://localhost:8888/cluster"
+        function: create cluster and add the first moxi node to cluster, info record to zk
+        url example: curl --user root:root -d "clusterName=moxi_cluster&dataNodeIp=192.168.116.129&dataNodeName=moxi_cluster_node_1[&dataNodeExternalPort=**]" "http://localhost:8888/cluster"
         '''
         requestParam = self.get_all_arguments()
         clusterUUID = self.cluster_opers.createCluster(requestParam)

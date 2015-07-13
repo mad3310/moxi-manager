@@ -24,7 +24,7 @@ class AdminConf(APIHandler):
         '''
         requestParam = self.get_all_arguments()
         if requestParam != {}:
-            self.confOpers.setValue(options.jetty_manager_property, requestParam)
+            self.confOpers.setValue(options.moxi_manager_property, requestParam)
             
         result = {}
         result.setdefault("message", "admin conf successful!")
@@ -43,12 +43,12 @@ class AdminReset(APIHandler):
     
         clusterPropTemFileName = os.path.join(template_path,"cluster.property.template")
         dataNodePropTemFileName = os.path.join(template_path,"dataNode.property.template")
-        nclusterManagerPropTemFileName = os.path.join(template_path,"jetty_manager.property.template")
+        nclusterManagerPropTemFileName = os.path.join(template_path,"moxi_manager.property.template")
     
         clusterPropFileName = os.path.join(config_path,"cluster.property")
         dataNodePropFileName = os.path.join(config_path,"dataNode.property")
-        jettyManagerPropFileName = os.path.join(config_path,"jetty_manager.property")
-        fileNameList = [clusterPropFileName,dataNodePropFileName,jettyManagerPropFileName]
+        moxiManagerPropFileName = os.path.join(config_path,"moxi_manager.property")
+        fileNameList = [clusterPropFileName,dataNodePropFileName,moxiManagerPropFileName]
     
         for fileName in fileNameList:
             if os.path.exists(fileName):
@@ -57,7 +57,7 @@ class AdminReset(APIHandler):
         
         shutil.copyfile(clusterPropTemFileName, clusterPropFileName)
         shutil.copyfile(dataNodePropTemFileName, dataNodePropFileName)
-        shutil.copyfile(nclusterManagerPropTemFileName, jettyManagerPropFileName)
+        shutil.copyfile(nclusterManagerPropTemFileName, moxiManagerPropFileName)
    
         result = {}
         result.setdefault("message", "admin reset successful!")
@@ -101,13 +101,13 @@ class Config(APIHandler):
     
     def post(self):
         '''
-        function: set the jetty configuration file
-        url example: curl -d "k1=v1&k2=v2" "http://localhost:8888/jetty/config"
+        function: set the moxi configuration file
+        url example: curl -d "k1=v1&k2=v2" "http://localhost:8888/moxi/config"
         '''
         requestParam = self.get_all_arguments()
         
         zkOper = Requests_ZkOpers()
         if requestParam != {}:
-            self.confOpers.setValue(options.jetty_service_cnf, requestParam)
-            source_text = self.confOpers.retrieve_full_text(options.jetty_service_cnf)
-            zkOper.writeJettyCnf(source_text)
+            self.confOpers.setValue(options.moxi_service_cnf, requestParam)
+            source_text = self.confOpers.retrieve_full_text(options.moxi_service_cnf)
+            zkOper.writemoxiCnf(source_text)

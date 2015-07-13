@@ -87,7 +87,7 @@ class APIHandler(BaseHandler):
         try:
             local_ip = get_host_ip()
             invokeCommand = InvokeCommand()
-            cmd_str = "rpm -qa jetty-manager"
+            cmd_str = "rpm -qa moxi-manager"
             version_str = invokeCommand._runSysCmd(cmd_str)
             logging.info("version_str :" + str(version_str)) 
             # send email
