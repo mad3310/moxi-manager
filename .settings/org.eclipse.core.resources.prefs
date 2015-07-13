@@ -4,4 +4,5 @@ encoding//src/api/appdefine/appDefine.py=utf-8
 encoding//src/api/handlers/base.py=utf-8
 encoding//src/api/moxiManager.py=utf-8
 encoding//src/api/routes.py=utf-8
-encoding//src/api/utils/configFileOpers.py=utf-8
+encoding//src/api/utils/exceptions.py=utf-8
+encoding//src/api/utils/invokeCommand.py=utf-8
