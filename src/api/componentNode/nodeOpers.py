@@ -10,7 +10,6 @@ from tornado.options import options
 from utils import retrieve_node_name
 from utils.invokeCommand import InvokeCommand
 from common.abstractOpers import AbstractOpers
-from zk.zkOpers import Common_ZkOpers
 from utils.exceptions import UserVisiableException
 from utils import getClusterUUID
 from utils.configFileOpers import ConfigFileOpers
@@ -120,8 +119,6 @@ class NodeOpers(AbstractOpers):
             result.setdefault("message", "moxi status failed")
         else:
             result.setdefault("message", "moxi status successfully")
-            #container_name = retrieve_node_name()
-            #zkOper = Common_ZkOpers()
-            #zkOper.write_started_node(container_name)
+
             
         return result
